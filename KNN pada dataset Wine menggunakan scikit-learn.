@@ -1,0 +1,40 @@
+#KNN
+##mengimplementasikan algoritma K-Nearest Neighbors (KNN) pada dataset Wine menggunakan pustaka scikit-learn. 
+# Import library yang dibutuhkan
+from sklearn.datasets import load_wine
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+
+# 1. Memuat dataset Wine
+wine = load_wine()
+# Split the data into features (X) and target (y)
+X = df.drop('target', axis=1) # Fitur (independent variables)
+y = df['target']  # Target (dependent variable)
+
+# Split the data into training and test sets (70% latih dan 30% uji)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# 3. Normalisasi data (standarisasi) untuk memastikan fitur memiliki skala yang sama
+scaler = StandardScaler()
+scaler. fit(X_train)
+X_train = scaler.transform(X_train)
+X_test = scaler.transform(X_test)
+
+# 4. # Initialize K-Nearest Neighbor Classifier
+knn = KNeighborsClassifier (n_neighbors=3)
+
+# 5. Melatih model dengan data pelatihan
+knn.fit(X_train, y_train)
+
+# 6. Melakukan prediksi pada data pengujian
+y_pred = knn.predict (X_test)
+y_pred
+
+# menentukan probabilitas prediksi
+knn.predict_proba(X_test)
+
+# 7. Menghitung dan mencetak akurasi model
+accuracy = accuracy_score(y_test, y_pred)
+print(accuracy * 100)
